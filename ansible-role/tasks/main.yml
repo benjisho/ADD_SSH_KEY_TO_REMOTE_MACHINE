@@ -1,0 +1,11 @@
+- name: Add SSH key to remote machine
+  vars_prompt:
+    - name: ssh_key_user
+      prompt: 'Enter your SSH user'
+      private: no
+    - name: ssh_key
+      prompt: 'Enter your SSH key'
+      private: yes
+  authorized_key:
+    user: '{{ ssh_key_user }}'
+    key: '{{ ssh_key }}'

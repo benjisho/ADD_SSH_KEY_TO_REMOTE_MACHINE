@@ -1,4 +1,5 @@
-# Ansible Vault
+# Optional
+## You can use Ansible Vault to Encrypt the SSH key
 
 Ansible Vault is a feature of ansible that allows you to encrypt sensitive data such as passwords, keys, or tokens. You can use ansible-vault to encrypt and decrypt files or variables in your repository.
 

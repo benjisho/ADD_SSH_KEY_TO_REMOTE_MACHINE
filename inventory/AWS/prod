@@ -1,4 +1,5 @@
 [web_servers]
+# Uncomment to use
 # web1.prod.aws.example.com
 # web2.prod.aws.example.com
 

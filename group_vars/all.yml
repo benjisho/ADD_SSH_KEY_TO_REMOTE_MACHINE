@@ -1,0 +1,4 @@
+# group_vars/all.yml
+
+# The SSH key to add
+ssh_key: "ssh-rsa DMHNFJMGHDHGSXCHVJGHCFDJXDCGHCV ssh_user"

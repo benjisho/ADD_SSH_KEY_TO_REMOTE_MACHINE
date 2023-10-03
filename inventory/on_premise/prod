@@ -1,1 +1,7 @@
+[web_servers]
+# web1.on_prem.aws.example.com
+# web2.on_prem.aws.example.com
 
+[db_servers]
+# db1.on_prem.aws.example.com
+# db2.on_prem.aws.example.com

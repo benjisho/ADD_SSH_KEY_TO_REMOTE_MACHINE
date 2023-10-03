@@ -17,11 +17,11 @@ vault_password_file = ~/.vault_pass.txt
 This way, ansible will automatically use your vault password when running playbooks or commands that involve encrypted files or variables.
 
 You can use the `ansible-vault` command to encrypt and decrypt files or variables in your repository. For example, if you want to encrypt the `group_vars/all.yml` file that contains the SSH key, you can run the following command:
-
+`
 ```
 ansible-vault encrypt --vault-password-file ~/.vault_pass.txt group_vars/all.yml
 ```
 
 This will encrypt the file and make it unreadable without the vault password. You can also use the `ansible-vault` command to edit, decrypt, or rekey the file.
 
-- For more information, see the [Ansible Vault documentation](https://docs.ansible.com/ansible/2.8/user_guide/vault.html)https://docs.ansible.com/ansible/2.8/user_guide/vault.html.
+- For more information, see the [Ansible Vault documentation](https://docs.ansible.com/ansible/2.8/user_guide/vault.html).

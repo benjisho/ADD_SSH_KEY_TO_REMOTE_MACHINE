@@ -10,12 +10,34 @@
       default: "{{ ssh_key | default('') }}"
 
   tasks:
+    - name: Check if authorized_keys file exists for Linux hosts
+      stat:
+        path: "~/.ssh/authorized_keys"
+      register: file_status
+      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
+
+    - name: Print a message if authorized_keys file does not exist for Linux hosts
+      debug:
+        msg: "The authorized_keys file does not exist"
+      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat" and not file_status.stat.exists
+
     - name: Ensure authorized_keys file exists for Linux hosts
       file:
         path: "~/.ssh/authorized_keys"
         state: touch
         mode: 0600
       when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
+
+    - name: Check if authorized_keys file exists for Windows hosts
+      win_stat:
+        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
+      register: file_status
+      when: ansible_os_family == "Windows"
+
+    - name: Print a message if authorized_keys file does not exist for Windows hosts
+      debug:
+        msg: "The authorized_keys file does not exist"
+      when: ansible_os_family == "Windows" and not file_status.stat.exists
 
     - name: Ensure authorized_keys file exists for Windows hosts
       win_file:
@@ -36,3 +58,4 @@
         line: "{{ ssh_key }}"
         create: yes
       when: ansible_os_family == "Windows"
+

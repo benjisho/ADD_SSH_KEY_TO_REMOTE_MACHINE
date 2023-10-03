@@ -18,9 +18,28 @@ ADD_SSH_KEY_TO_REMOTE_MACHINE/
 ├── ansible.cfg
 ├── group_vars/
 │   └── all.yml
+├── host_vars/
 ├── inventory/
-│   ├── hosts
-│   └── host_vars/
+│   ├── AWS
+│   │   ├── prod
+│   │   ├── test
+│   │   └── dev
+│   ├── DigitalOcean
+│   │   ├── prod
+│   │   ├── test
+│   │   └── dev
+│   ├── GCP
+│   │   ├── prod
+│   │   ├── test
+│   │   └── dev
+│   ├── Vultr
+│   │   ├── prod
+│   │   ├── test
+│   │   └── dev
+│   └── on_premise
+│   │   ├── prod
+│   │   ├── test
+│   │   └── dev
 └── playbooks/
     └── add_ssh_key.yml
 ```
@@ -30,10 +49,10 @@ ADD_SSH_KEY_TO_REMOTE_MACHINE/
 `group_vars/all.yml`: Define variables that apply to all the hosts in the inventory.
 You can specify the SSH key to be added here. For security reasons, you can encrypt this file using the ansible-vault command.
 
-`inventory/hosts`: This is the inventory file where you list the hosts you want to manage.
+`inventory/*`: This is the inventory directory where you list the hosts you want to manage.
 You can group hosts for better organization.
 
-`inventory/host_vars/`: This directory contains individual files for each host.
+`host_vars/`: This directory contains individual files for each host.
 Here, you can define host-specific variables like the hostname, remote user, and SSH private key file.
 
 `playbooks/add_ssh_key.yml`: The main playbook responsible for adding the specified SSH key to all remote machines.

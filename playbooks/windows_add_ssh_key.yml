@@ -1,13 +1,13 @@
 ---
 - name: Add SSH key to all remote Windows machines
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars_prompt:
     - name: windows_ssh_key
       prompt: Enter the SSH key to add
-      private: no
+      private: false
       default: "{{ windows_ssh_key | default('') }}"
 
   tasks:

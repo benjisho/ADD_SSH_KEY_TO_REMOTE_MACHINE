@@ -24,18 +24,6 @@ ADD_SSH_KEY_TO_REMOTE_MACHINE/
 │   │   ├── prod
 │   │   ├── test
 │   │   └── dev
-│   ├── DigitalOcean
-│   │   ├── prod
-│   │   ├── test
-│   │   └── dev
-│   ├── GCP
-│   │   ├── prod
-│   │   ├── test
-│   │   └── dev
-│   ├── Vultr
-│   │   ├── prod
-│   │   ├── test
-│   │   └── dev
 │   └── on_premise
 │   │   ├── prod
 │   │   ├── test

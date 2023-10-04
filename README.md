@@ -19,20 +19,8 @@ ADD_SSH_KEY_TO_REMOTE_MACHINE/
 ├── group_vars/
 │   └── all.yml
 ├── host_vars/
-├── inventory/
+├── inventory/`
 │   ├── AWS
-│   │   ├── prod
-│   │   ├── test
-│   │   └── dev
-│   ├── DigitalOcean
-│   │   ├── prod
-│   │   ├── test
-│   │   └── dev
-│   ├── GCP
-│   │   ├── prod
-│   │   ├── test
-│   │   └── dev
-│   ├── Vultr
 │   │   ├── prod
 │   │   ├── test
 │   │   └── dev

@@ -1,7 +1,8 @@
 ---
-- name: Add SSH key to all remote machines
+- name: Add SSH key to all remote Linux machines
   hosts: all
   become: yes
+  gather_facts: yes
 
   vars_prompt:
     - name: ssh_key
@@ -28,34 +29,9 @@
         mode: 0600
       when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
 
-    - name: Check if authorized_keys file exists for Windows hosts
-      win_stat:
-        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
-      register: file_status
-      when: ansible_os_family == "Windows"
-
-    - name: Print a message if authorized_keys file does not exist for Windows hosts
-      debug:
-        msg: "The authorized_keys file does not exist"
-      when: ansible_os_family == "Windows" and not file_status.stat.exists
-
-    - name: Ensure authorized_keys file exists for Windows hosts
-      win_file:
-        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
-        state: touch
-      when: ansible_os_family == "Windows"
-
     - name: Add SSH key to authorized_keys file for Linux hosts
       authorized_key:
         user: "{{ ansible_user }}"
         state: present
         key: "{{ ssh_key }}"
       when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
-
-    - name: Add SSH key to authorized_keys file for Windows hosts
-      win_lineinfile:
-        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
-        line: "{{ ssh_key }}"
-        create: yes
-      when: ansible_os_family == "Windows"
-

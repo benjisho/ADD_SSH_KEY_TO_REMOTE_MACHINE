@@ -5,10 +5,10 @@
   gather_facts: yes
 
   vars_prompt:
-    - name: ssh_key
+    - name: windows_ssh_key
       prompt: Enter the SSH key to add
       private: no
-      default: "{{ ssh_key | default('') }}"
+      default: "{{ windows_ssh_key | default('') }}"
 
   tasks:
     - name: Check if authorized_keys file exists for Windows hosts
@@ -31,6 +31,6 @@
     - name: Add SSH key to authorized_keys file for Windows hosts
       win_lineinfile:
         path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
-        line: "{{ ssh_key }}"
+        line: "{{ windows_ssh_key }}"
         create: yes
       when: ansible_os_family == "Windows"

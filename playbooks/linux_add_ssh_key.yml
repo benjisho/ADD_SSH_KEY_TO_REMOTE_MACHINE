@@ -5,10 +5,10 @@
   gather_facts: yes
 
   vars_prompt:
-    - name: ssh_key
+    - name: linux_ssh_key
       prompt: Enter the SSH key to add
       private: no
-      default: "{{ ssh_key | default('') }}"
+      default: "{{ linux_ssh_key | default('') }}"
 
   tasks:
     - name: Check if authorized_keys file exists for Linux hosts
@@ -33,5 +33,5 @@
       authorized_key:
         user: "{{ ansible_user }}"
         state: present
-        key: "{{ ssh_key }}"
+        key: "{{ linux_ssh_key }}"
       when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"

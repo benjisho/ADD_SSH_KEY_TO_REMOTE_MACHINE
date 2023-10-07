@@ -13,7 +13,7 @@
   tasks:
     - name: Check if authorized_keys file exists for Windows hosts
       win_stat:
-        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
+        path: "{{ windows_authorized_keys }}"
       register: file_status
       when: ansible_os_family == "Windows"
 
@@ -24,13 +24,13 @@
 
     - name: Ensure authorized_keys file exists for Windows hosts
       win_file:
-        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
+        path: "{{ windows_authorized_keys }}"
         state: touch
       when: ansible_os_family == "Windows"
 
     - name: Add SSH key to authorized_keys file for Windows hosts
       win_lineinfile:
-        path: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"
+        path: "{{ windows_authorized_keys }}"
         line: "{{ windows_ssh_key }}"
         create: yes
       when: ansible_os_family == "Windows"

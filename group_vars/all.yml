@@ -5,3 +5,7 @@ linux_ssh_key: "ssh-rsa DMHNFJMGHDHGSXCHVJGHCFDJXDCGHCV ssh_user"
 
 # The SSH key to add for Windows playbook
 windows_ssh_key: "ssh-rsa DMHNFJMGHDHGSXCHVJGHCFDJXDCGHCV ssh_user"
+
+linux_authorized_keys: "~/.ssh/authorized_keys"
+
+windows_authorized_keys: "C:\\Users\\{{ ansible_user }}\\.ssh\\authorized_keys"

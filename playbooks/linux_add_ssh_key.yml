@@ -13,7 +13,7 @@
   tasks:
     - name: Check if authorized_keys file exists for Linux hosts
       stat:
-        path: "~/.ssh/authorized_keys"
+        path: "{{ linux_authorized_keys }}"
       register: file_status
       when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
 
@@ -24,7 +24,7 @@
 
     - name: Ensure authorized_keys file exists for Linux hosts
       file:
-        path: "~/.ssh/authorized_keys"
+        path: "{{ linux_authorized_keys }}"
         state: touch
         mode: 0600
       when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"

@@ -27,12 +27,11 @@
         path: "{{ linux_authorized_keys }}"
         state: touch
         mode: 0600
-      when: ansible_system == "Linux"
+      when: ansible_system == "Linux" and file_status.stat.exists
       
     - name: Add SSH key to authorized_keys file for Linux hosts
       authorized_key:
         user: "{{ ansible_user }}"
         state: present
         key: "{{ linux_ssh_key }}"
-      when: ansible_system == "Linux"
-      
+      when: ansible_system == "Linux" and file_status.stat.exists      
